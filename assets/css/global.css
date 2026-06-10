@@ -1,124 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=glacial-indifference@400,700&display=swap');
+
 /* =====================
-   GLOBAL HITBOXE
+   TOKENS — HITBOXE
    ===================== */
-body {
-    background-color: black;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+:root {
+    --red:          #CF0000;
+    --red-dark:     #680000;
+    --red-hover:    #9E0000;
+    --red-glow:     rgba(207, 0, 0, 0.35);
+    --surface:      #0D0D0D;
+    --border-faint: rgba(255, 255, 255, 0.08);
+    --border-red:   rgba(207, 0, 0, 0.35);
+    --gray-pill:    #3A3737;
 }
 
+/* =====================
+   BASE
+   ===================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    font-family: 'Glacial Indifference', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+}
+
+/* =====================
+   NAVBAR
+   ===================== */
 .home {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: black;
     height: 64px;
+    background: #000;
+    border-bottom: 1px solid var(--border-faint);
     z-index: 1000;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
-/* Logo absoluto à esquerda */
+/* Grupo esquerdo: logo + FAQ */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 #logo {
-    position: absolute;
-    left: 20px;
-    top: 7px;
-    width: 50px;
+    width: 44px;
     height: auto;
+    display: block;
 }
 
-/* Grupo FAQ - absoluto próximo à esquerda */
 #caixa1 {
-    position: absolute;
-    left: 80px;
-    top: 10px;
-    background-color: #464343;
+    background-color: var(--gray-pill);
     border-radius: 100px;
-    padding: 6px 14px;
+    padding: 5px 14px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-/* Grupo central de navegação - centralizado via margin */
+/* Nav central — absoluta para centralização perfeita */
 #caixa2 {
     position: absolute;
     left: 50%;
-    top: 10px;
     transform: translateX(-50%);
-    background-color: black;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 100px;
-    padding: 6px 14px;
+    padding: 5px 6px;
     white-space: nowrap;
 }
 
-/* Botão de menu (hamburguer) para páginas logadas */
-#menu {
-    position: absolute;
-    left: 85px;
-    top: 16px;
-    width: 36px;
-    height: 30px;
-    cursor: pointer;
+/* Auth — extrema direita */
+#caixa-auth {
+    background-color: var(--red-dark);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 100px;
+    padding: 5px 14px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-/* Grupo Cadastro - lado direito */
-#caixa3 {
-    position: absolute;
-    right: 140px;
-    top: 10px;
-    background-color: rgb(104, 0, 0);
-    border: 1px solid white;
-    border-radius: 100px;
-    padding: 6px 14px;
-}
-
-/* Grupo Login - extrema direita */
-#caixa4 {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 100px;
-    padding: 6px 14px;
+.page-spacer {
+    height: 64px;
 }
 
 /* =====================
-   BOTÕES DO MENU
+   BOTÕES DA NAVBAR
    ===================== */
 #faq {
     background: none;
     border: none;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+    color: #fff;
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     outline: none;
-    padding: 2px 6px;
+    padding: 2px 4px;
+    transition: color 0.2s ease;
 }
 
 #sobre, #inicio, #planos, #cadastro,
 #dashboard, #consultoria {
     background: none;
     border: none;
-    color: white;
-    font-family: 'Gill Sans', sans-serif;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    padding: 4px 12px;
+    border-radius: 100px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#btn-auth {
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
     cursor: pointer;
     outline: none;
     padding: 2px 10px;
-}
-
-#Login {
-    background: none;
-    border: none;
-    color: white;
-    font-family: 'Gill Sans', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    padding: 4px 10px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
 }
 
 #usuario {
@@ -129,11 +147,12 @@ body {
 }
 
 #fotousuario {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
     vertical-align: middle;
+    border: 2px solid var(--red);
 }
 
 #sair {
@@ -141,72 +160,88 @@ body {
     border: none;
     cursor: pointer;
     padding: 2px 4px;
-    color: white;
+    color: #fff;
     display: inline-block;
 }
 
 #sair img {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     vertical-align: middle;
 }
 
-/* Aba ativa */
+/* =====================
+   ESTADO ATIVO
+   ===================== */
 #planos.ativo, #sobre.ativo, #dashboard.ativo,
 #inicio.ativo, #consultoria.ativo {
-    background-color: rgb(104, 0, 0) !important;
-    border: 1px solid white !important;
+    background-color: var(--red-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
     border-radius: 100px !important;
-    color: white !important;
+    color: #fff !important;
     padding: 4px 14px !important;
 }
 
-/* Spacer para compensar o menu fixo */
-.page-spacer {
-    height: 64px;
+#faq.ativo {
+    color: #ff6060;
 }
 
-/* Menu de páginas autenticadas */
-.home--logged #caixa3 {
-    background-color: #ab2225 !important;
+/* =====================
+   HOVER — NAVBAR
+   ===================== */
+#caixa1:hover {
+    background-color: #4e4b4b;
+    transform: translateY(-1px);
 }
 
-.home--logged #caixa4 {
-    background-color: black !important;
+#faq:hover {
+    color: #ff6060;
 }
 
-/* Utilitários globais */
-.main-offset {
-    padding-top: 80px;
+#sobre:hover:not(.ativo),
+#inicio:hover:not(.ativo),
+#planos:hover:not(.ativo),
+#dashboard:hover:not(.ativo),
+#consultoria:hover:not(.ativo) {
+    background-color: rgba(104, 0, 0, 0.55);
+    color: #fff;
 }
 
-.icon-button-img {
-    width: 44px;
-    height: 44px;
+#caixa-auth:hover {
+    background-color: var(--red-hover);
+    transform: translateY(-1px);
 }
 
-.text-center {
-    text-align: center;
+#btn-auth:hover {
+    color: #ffcccc;
 }
 
-.link-brand {
-    color: rgb(104, 0, 0);
-}
-
+/* =====================
+   UTILITÁRIOS
+   ===================== */
 .content-offset {
     padding-top: 64px;
 }
 
 .form-feedback {
     display: none;
-    font-family: Arial, sans-serif;
+    font-family: 'Glacial Indifference', sans-serif;
     font-size: 14px;
 }
 
-.form-feedback--error {
-    color: rgb(207, 0, 0);
+.form-feedback--error   { color: var(--red); }
+.form-feedback--success { color: #22c55e; }
+
+/* =====================
+   TIPOGRAFIA GLOBAL
+   ===================== */
+body #tit, body #tit1, body #tit2, body #tit3 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.02em;
 }
 
-.form-feedback--success {
-    color: green;
+body #btn-auth, body #btcadastro, body #btlogin,
+body .btn-matricula, body .Matriculas, body .Matriculas1,
+body #Bprincipal {
+    letter-spacing: 0.04em;
 }
