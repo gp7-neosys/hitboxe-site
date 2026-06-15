@@ -10,37 +10,22 @@ body {
 }
 
 /* =========================================
+<<<<<<< Updated upstream
    NAVBAR PADRÃO (igual ao global.css)
+=======
+   NAVBAR — estilos base vêm do global.css
+   Aqui apenas o que é específico desta página
+>>>>>>> Stashed changes
    ========================================= */
-.home {
-    background-color: rgba(0, 0, 0, 0.95);
-    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+
+/* Alinha links <a> da nav central como flex */
+#caixa2 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 4%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-sizing: border-box;
+    gap: 4px;
 }
 
-#logo { height: 50px; width: auto; margin-right: 15px; }
-
-#caixa1 button, #caixa2 button, #caixa3 button {
-    background: none; border: none; color: white; cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 18px; padding: 6px 12px;
-}
-
-#caixa1 button { background-color: #464343; border-radius: 100px; font-weight: bold; }
-#caixa2 { display: flex; gap: 10px; border: 1px solid white; border-radius: 100px; padding: 4px 10px; }
-#caixa2 button.ativo { background-color: rgb(104, 0, 0); border-radius: 100px; }
-
-#caixa3 { display: flex; align-items: center; gap: 8px; border: 1px solid white; border-radius: 100px; padding: 4px 15px; background-color: rgb(104, 0, 0); }
-#caixa3 button { padding: 0; }
-
-.page-spacer { height: 90px; }
+.page-spacer { height: 64px; }
 
 /* =========================================
    LAYOUT ADM
