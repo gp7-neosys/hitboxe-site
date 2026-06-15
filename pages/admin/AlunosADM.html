@@ -10,24 +10,25 @@
 <body>
 
     <!-- NAVBAR -->
-    <div class="home">
-        <img id="logo" src="../../assets/img/logos/logo-hitboxe.png" alt="logo Hitboxe" onclick="window.location.href='../../index.html'" style="cursor:pointer;">
+    <header class="home" role="banner">
+        <a href="../../index.html" id="logo-link" aria-label="Hitboxe — Voltar para o início">
+            <img id="logo" src="../../assets/img/logos/logo-hitboxe.png" alt="Logo Hitboxe">
+        </a>
 
-        <div id="caixa1">    
-            <button type="button" id="faq" onclick="window.location.href='../faq/faq.html'">FAQ</button>
+        <div id="caixa1">
+            <a href="../faq/faq.html" id="faq">FAQ</a>
         </div>
 
-        <div id="caixa2">
-            <button type="button" id="sobre" onclick="window.location.href='../sobre/sobre.html'">Sobre</button>
-            <button type="button" id="inicio" onclick="window.location.href='../../index.html'">Início</button>
-            <button type="button" id="planos" onclick="window.location.href='../planos/planos.html'">Planos</button>
-        </div>
+        <nav id="caixa2" aria-label="Navegação principal">
+            <a href="../sobre/sobre.html"   id="sobre">Sobre</a>
+            <a href="../../index.html"      id="inicio">Início</a>
+            <a href="../planos/planos.html" id="planos">Planos</a>
+        </nav>
 
-        <div id="caixa3">
-            <button type="button" id="cadastro" onclick="sair()">Sair (ADM)</button>
-            <img src="../../assets/img/Botao usuario.png" alt="" width="26px" style="margin-left: 5px;">
+        <div id="caixa-auth">
+            <button type="button" id="btn-auth" onclick="sair()">Sair (ADM)</button>
         </div>
-    </div>
+    </header>
 
     <div class="page-spacer"></div>
 
