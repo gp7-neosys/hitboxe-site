@@ -36,31 +36,31 @@
         <div id="cadastraraluno">
             <h2 style="text-align: center;">Cadastrar Cliente</h2>
             <hr>
-            <form onsubmit="event.preventDefault(); alert('Cliente cadastrado com sucesso!');">
+            <form onsubmit="event.preventDefault(); cadastrarCliente();">
                 <div class="corpocadastro">
                     <div class="esquerda">
                         <label class="textC" for="Nome">Nome Completo:</label>
-                        <input class="inserir" type="text" placeholder="Digite o nome" required>
+                        <input class="inserir" id="cad-nome" type="text" placeholder="Digite o nome" required>
 
                         <label class="textC" for="data">Data de Nascimento:</label>
-                        <input class="inserir" type="date" required>
+                        <input class="inserir" id="cad-data" type="date" required>
 
                         <label class="textC" for="Endereço">Endereço:</label>
-                        <input class="inserir" type="text" placeholder="Rua, número, bairro..." required>
+                        <input class="inserir" id="cad-end" type="text" placeholder="Rua, número, bairro..." required>
 
                         <label class="textC" for="E-mail">E-mail:</label>
-                        <input class="inserir" type="email" placeholder="exemplo@email.com" required>
+                        <input class="inserir" id="cad-email" type="email" placeholder="exemplo@email.com" required>
 
                         <label class="textC" for="fone">Telefone:</label>
-                        <input class="inserir" type="tel" placeholder="(11) 90000-0000" required>
+                        <input class="inserir" id="cad-fone" type="tel" placeholder="(11) 90000-0000" required>
                     </div>
 
                     <div id="direita">
                         <label class="textC">Foto</label>
                         <div id="fotofundo">
-                            <img src="../../assets/img/foto consultor.png" alt="Foto"> 
+                            <img src="../../assets/img/foto consultor.png" alt="Foto" id="cad-preview"> 
                         </div>
-                        <input id="selecao-arquivo" type="file" required>
+                        <input id="selecao-arquivo" type="file" accept="image/*">
                     </div>
                 </div>
 
@@ -75,77 +75,262 @@
         <div id="coluna">
             <div id="fundopesquisa">
                 <div id="pesquisa">
-                    <input type="search" id="pesq" placeholder="Buscar por nome, email ou telefone...">
-                    <div id="ordenar">
-                        <span>⇅</span>
-                        <p>Ordenar por: Nome</p>
+                    <input type="search" id="pesq" placeholder="Buscar por nome, email ou telefone..." oninput="filtrarClientes()">
+                    <div id="ordenar" onclick="alternarOrdem()">
+                        <span id="ordem-icone">⇅</span>
+                        <p id="ordem-texto">Ordenar por: Nome ↑</p>
                     </div>
                 </div>
-                <p>Encontrados: 4 clientes</p>
+                <p id="contador-clientes">Encontrados: 4 clientes</p>
             </div>
             
             <div id="lado">
-                <!-- Cartão 1 -->
-                <div class="cartoes">
-                    <div class="nomelx">
-                        <h3>João Silva</h3>
-                        <span style="cursor:pointer;" title="Remover">🗑️</span>
-                    </div>
-                    <div class="iconetext"><p>📧 joao@email.com</p></div>
-                    <div class="iconetext"><p>📞 (11) 99999-1111</p></div>
-                    <div class="iconetext"><p>📅 15/05/1990</p></div>
-                    <div class="iconetext"><p>📍 Rua A, 123 - SP</p></div>
-                </div>
-                <!-- Cartão 2 -->
-                <div class="cartoes">
-                    <div class="nomelx">
-                        <h3>Maria Souza</h3>
-                        <span style="cursor:pointer;" title="Remover">🗑️</span>
-                    </div>
-                    <div class="iconetext"><p>📧 maria@email.com</p></div>
-                    <div class="iconetext"><p>📞 (11) 98888-2222</p></div>
-                    <div class="iconetext"><p>📅 20/08/1995</p></div>
-                    <div class="iconetext"><p>📍 Av B, 45 - SP</p></div>
-                </div>
-                <!-- Cartão 3 -->
-                <div class="cartoes">
-                    <div class="nomelx">
-                        <h3>Carlos Mendes</h3>
-                        <span style="cursor:pointer;" title="Remover">🗑️</span>
-                    </div>
-                    <div class="iconetext"><p>📧 carlos@email.com</p></div>
-                    <div class="iconetext"><p>📞 (11) 97777-3333</p></div>
-                    <div class="iconetext"><p>📅 10/12/1988</p></div>
-                    <div class="iconetext"><p>📍 Rua C, 90 - SP</p></div>
-                </div>
-                <!-- Cartão 4 -->
-                <div class="cartoes">
-                    <div class="nomelx">
-                        <h3>Ana Costa</h3>
-                        <span style="cursor:pointer;" title="Remover">🗑️</span>
-                    </div>
-                    <div class="iconetext"><p>📧 ana@email.com</p></div>
-                    <div class="iconetext"><p>📞 (11) 96666-4444</p></div>
-                    <div class="iconetext"><p>📅 05/03/1992</p></div>
-                    <div class="iconetext"><p>📍 Alameda D, 12 - SP</p></div>
-                </div>
+                <!-- Cartões gerados pelo JS -->
             </div>
         </div>
-    </div> 
+    </div>
 
-    <!-- Script de Acessibilidade -->
+    <!-- ===================== MODAL EDIÇÃO ===================== -->
+    <div id="overlay-edicao" onclick="fecharModal(event)">
+        <div id="modal-edicao">
+            <div id="modal-header">
+                <h2>Editar Cliente</h2>
+                <button id="btn-fechar-modal" onclick="fecharModalDireto()" title="Fechar">✕</button>
+            </div>
+            <hr id="modal-hr">
+
+            <form id="form-edicao" onsubmit="event.preventDefault(); salvarEdicao();">
+                <div class="corpocadastro">
+                    <div class="esquerda">
+                        <label class="textC">Nome Completo:</label>
+                        <input class="inserir" id="edit-nome" type="text" required>
+
+                        <label class="textC">Data de Nascimento:</label>
+                        <input class="inserir" id="edit-data" type="date" required>
+
+                        <label class="textC">Endereço:</label>
+                        <input class="inserir" id="edit-end" type="text" required>
+
+                        <label class="textC">E-mail:</label>
+                        <input class="inserir" id="edit-email" type="email" required>
+
+                        <label class="textC">Telefone:</label>
+                        <input class="inserir" id="edit-fone" type="tel" required>
+                    </div>
+
+                    <div id="direita">
+                        <label class="textC">Foto</label>
+                        <div id="edit-fotofundo">
+                            <img id="edit-preview" src="../../assets/img/foto consultor.png" alt="Foto">
+                        </div>
+                        <input id="edit-arquivo" type="file" accept="image/*" onchange="previewFotoEdicao(this)" style="max-width:100%; font-size:11px;">
+                    </div>
+                </div>
+
+                <div id="botoes" style="margin-top: 20px;">
+                    <button type="button" id="limpar" onclick="fecharModalDireto()">Cancelar</button>
+                    <input id="cadastrar" type="submit" value="Salvar Alterações">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ======================================================= -->
+
+    <!-- Toast de confirmação -->
+    <div id="toast"></div>
+
     <script src="../../assets/js/acessibilidade.js"></script>
     <script>
+        // ── PROTEÇÃO DE ROTA ──────────────────────────────────────────
         const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado"));
-        // Proteção da rota
         if (!usuario || usuario.email !== "admin@hitboxe.com") {
             window.location.href = "../login/login.html";
         }
-
         function sair() {
             sessionStorage.removeItem("usuarioLogado");
             window.location.href = "../login/login.html";
         }
+
+        // ── DADOS (simulando banco) ───────────────────────────────────
+        let clientes = [
+            { id: 1, nome: "João Silva",    email: "joao@email.com",   fone: "(11) 99999-1111", data: "1990-05-15", end: "Rua A, 123 - SP",     foto: null },
+            { id: 2, nome: "Maria Souza",   email: "maria@email.com",  fone: "(11) 98888-2222", data: "1995-08-20", end: "Av B, 45 - SP",        foto: null },
+            { id: 3, nome: "Carlos Mendes", email: "carlos@email.com", fone: "(11) 97777-3333", data: "1988-12-10", end: "Rua C, 90 - SP",       foto: null },
+            { id: 4, nome: "Ana Costa",     email: "ana@email.com",    fone: "(11) 96666-4444", data: "1992-03-05", end: "Alameda D, 12 - SP",   foto: null },
+        ];
+        let proximoId = 5;
+        let ordemAsc = true;
+        let clienteEditandoId = null;
+
+        // ── UTILITÁRIOS ───────────────────────────────────────────────
+        function formatarData(iso) {
+            if (!iso) return "—";
+            const [y, m, d] = iso.split("-");
+            return `${d}/${m}/${y}`;
+        }
+
+        function mostrarToast(msg, tipo = "ok") {
+            const t = document.getElementById("toast");
+            t.textContent = msg;
+            t.className = "visivel " + tipo;
+            setTimeout(() => t.className = "", 2800);
+        }
+
+        // ── RENDERIZAR CARTÕES ────────────────────────────────────────
+        function renderizarClientes(lista) {
+            const container = document.getElementById("lado");
+            const contador  = document.getElementById("contador-clientes");
+
+            if (!lista.length) {
+                container.innerHTML = `<p class="sem-resultados">Nenhum cliente encontrado.</p>`;
+                contador.textContent = "Encontrados: 0 clientes";
+                return;
+            }
+
+            contador.textContent = `Encontrados: ${lista.length} cliente${lista.length !== 1 ? "s" : ""}`;
+
+            container.innerHTML = lista.map(c => `
+                <div class="cartoes" id="card-${c.id}">
+                    <div class="nomelx">
+                        <h3>${c.nome}</h3>
+                        <div class="acoes-card">
+                            <button class="btn-acao btn-editar" onclick="abrirEdicao(${c.id})" title="Editar cliente">
+                                ✏️
+                            </button>
+                            <button class="btn-acao btn-remover" onclick="removerCliente(${c.id})" title="Remover cliente">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    <div class="iconetext"><p>📧 ${c.email}</p></div>
+                    <div class="iconetext"><p>📞 ${c.fone}</p></div>
+                    <div class="iconetext"><p>📅 ${formatarData(c.data)}</p></div>
+                    <div class="iconetext"><p>📍 ${c.end}</p></div>
+                </div>
+            `).join("");
+        }
+
+        function listaOrdenadaEFiltrada() {
+            const termo = document.getElementById("pesq").value.toLowerCase();
+            let resultado = clientes.filter(c =>
+                c.nome.toLowerCase().includes(termo)  ||
+                c.email.toLowerCase().includes(termo) ||
+                c.fone.includes(termo)
+            );
+            resultado.sort((a, b) => ordemAsc
+                ? a.nome.localeCompare(b.nome, "pt-BR")
+                : b.nome.localeCompare(a.nome, "pt-BR")
+            );
+            return resultado;
+        }
+
+        function atualizar() { renderizarClientes(listaOrdenadaEFiltrada()); }
+
+        // ── PESQUISA E ORDEM ──────────────────────────────────────────
+        function filtrarClientes() { atualizar(); }
+
+        function alternarOrdem() {
+            ordemAsc = !ordemAsc;
+            document.getElementById("ordem-texto").textContent =
+                `Ordenar por: Nome ${ordemAsc ? "↑" : "↓"}`;
+            atualizar();
+        }
+
+        // ── CADASTRAR ─────────────────────────────────────────────────
+        function cadastrarCliente() {
+            const novo = {
+                id:    proximoId++,
+                nome:  document.getElementById("cad-nome").value.trim(),
+                data:  document.getElementById("cad-data").value,
+                end:   document.getElementById("cad-end").value.trim(),
+                email: document.getElementById("cad-email").value.trim(),
+                fone:  document.getElementById("cad-fone").value.trim(),
+                foto:  null,
+            };
+            clientes.push(novo);
+            document.querySelector("#cadastraraluno form").reset();
+            atualizar();
+            mostrarToast(`✅ ${novo.nome} cadastrado com sucesso!`);
+        }
+
+        // ── REMOVER ───────────────────────────────────────────────────
+        function removerCliente(id) {
+            const c = clientes.find(x => x.id === id);
+            if (!c) return;
+            if (!confirm(`Remover "${c.nome}"? Esta ação não pode ser desfeita.`)) return;
+            clientes = clientes.filter(x => x.id !== id);
+            atualizar();
+            mostrarToast(`🗑️ ${c.nome} removido.`, "erro");
+        }
+
+        // ── EDITAR — ABRIR MODAL ──────────────────────────────────────
+        function abrirEdicao(id) {
+            const c = clientes.find(x => x.id === id);
+            if (!c) return;
+            clienteEditandoId = id;
+
+            document.getElementById("edit-nome").value  = c.nome;
+            document.getElementById("edit-data").value  = c.data;
+            document.getElementById("edit-end").value   = c.end;
+            document.getElementById("edit-email").value = c.email;
+            document.getElementById("edit-fone").value  = c.fone;
+            document.getElementById("edit-preview").src =
+                c.foto || "../../assets/img/foto consultor.png";
+            document.getElementById("edit-arquivo").value = "";
+
+            const overlay = document.getElementById("overlay-edicao");
+            overlay.classList.add("ativo");
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharModalDireto() {
+            document.getElementById("overlay-edicao").classList.remove("ativo");
+            document.body.style.overflow = "";
+            clienteEditandoId = null;
+        }
+
+        function fecharModal(e) {
+            if (e.target === document.getElementById("overlay-edicao")) fecharModalDireto();
+        }
+
+        // Fechar com Esc
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") fecharModalDireto();
+        });
+
+        // ── EDITAR — SALVAR ───────────────────────────────────────────
+        function salvarEdicao() {
+            const idx = clientes.findIndex(x => x.id === clienteEditandoId);
+            if (idx === -1) return;
+
+            clientes[idx] = {
+                ...clientes[idx],
+                nome:  document.getElementById("edit-nome").value.trim(),
+                data:  document.getElementById("edit-data").value,
+                end:   document.getElementById("edit-end").value.trim(),
+                email: document.getElementById("edit-email").value.trim(),
+                fone:  document.getElementById("edit-fone").value.trim(),
+            };
+
+            fecharModalDireto();
+            atualizar();
+            mostrarToast(`✅ ${clientes[idx].nome} atualizado com sucesso!`);
+        }
+
+        // ── PREVIEW FOTO EDIÇÃO ───────────────────────────────────────
+        function previewFotoEdicao(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    document.getElementById("edit-preview").src = e.target.result;
+                    clientes[clientes.findIndex(x => x.id === clienteEditandoId)].foto = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // ── INIT ──────────────────────────────────────────────────────
+        atualizar();
     </script>
 </body>
 </html>
