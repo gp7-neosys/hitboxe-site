@@ -84,13 +84,20 @@
     list-style: none;
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(207, 0, 0);
-    width: 400px;
+    width: 350px;
+    height: 280px;
     padding: 20px 20px 20px 10px;
     margin: 0;
+    padding: 50px;
     border-radius: 20px;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
+    object-fit: cover;
+    vertical-align: middle;
+}
+#caixa5 li {
+    margin-bottom: 20px;
 }
 
 /* Ícone ✓ via CSS; alt vazio (/ '') para não ser lido por leitores de tela,
@@ -133,30 +140,41 @@
 }
 
 /* Cards base */
-.caixas1,
-.caixas2 {
+.caixas1 {
     background-color: #fff;
     border: 1.5px solid rgb(207, 0, 0);
     width: 300px;
+    height: 380px;
     padding: 24px 22px;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
-
+.caixas2 {
+    background-color: #fff;
+    border: 1.5px solid rgb(207, 0, 0);
+    width: 300px;
+    height: 380px;
+    padding: 24px 22px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
 /* Card destaque — Nocaute */
 .caixas3 {
     background-color: #0d0d0d;
     border: 1.5px solid rgb(207, 0, 0);
-    width: 316px;
+    width: 300px;
+    height: 380px;
     padding: 28px 24px;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     position: relative;
-    transform: translateY(-10px);
+    /* transform: translateY(-10px); */
     box-shadow: 0 16px 48px rgba(207, 0, 0, 0.22);
 }
 
