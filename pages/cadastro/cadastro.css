@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 40px;
     padding: 80px;
     flex-wrap: wrap;
@@ -20,14 +20,17 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    box-sizing: border-box;
 }
 
 #fotocadastro {
-    width: 380px;
-    height: auto;
+    width: 420px;
+    height: 100%;
+    object-fit: cover;
     border: solid 4px rgb(207,0,0);
     border-radius: 30px;
-    align-self: flex-start;
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 #tit { font-family: 'Oswald', sans-serif; font-weight: 100; text-decoration: underline; font-size: 28px; margin: 0; }
