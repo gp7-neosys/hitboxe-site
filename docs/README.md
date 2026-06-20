@@ -17,7 +17,7 @@
 
 ## 📋 Sobre o Projeto
 
-O **Hitboxe** é um site institucional fictício para uma academia de boxe, criado pelo **Grupo 7 (Turma A)** da disciplina de **PCW (Padrões para Conteúdos Web)** e **PI (Projeto Integrador)**, no **1º Termo do curso de Análise e Desenvolvimento de Sistemas (ADS)** da **FIPP/Unoeste — 2026**.
+O **Hitboxe** é um site institucional fictício para uma academia de boxe, criado pelo **Grupo 2 (Turma A)** da disciplina de **PCW (Padrões para Conteúdos Web)** e **PI (Projeto Integrador)**, no **1º Termo do curso de Análise e Desenvolvimento de Sistemas (ADS)** da **FIPP/Unoeste — 2026**.
 
 O projeto simula um produto real desenvolvido pela empresa fictícia **NeoSys Consultoria de TI**, exercitando na prática os conteúdos de desenvolvimento front-end com HTML e CSS.
 
@@ -124,15 +124,15 @@ Não é necessária nenhuma instalação adicional — basta abrir o `index.html
 
 ## 🏢 Sobre a NeoSys Consultoria de TI
 
-A **NeoSys** é uma empresa fictícia criada pelos integrantes do Grupo 7 da Turma A, no âmbito da disciplina de **Projeto Integrador (PI)** do **1º Termo do curso de ADS** da **FIPP/Unoeste (2026)**. A organização serve de contexto para os projetos acadêmicos desenvolvidos pelo grupo ao longo do semestre.
+A **NeoSys** é uma empresa fictícia criada pelos integrantes do Grupo 2 da Turma A, no âmbito da disciplina de **Projeto Integrador (PI)** do **1º Termo do curso de ADS** da **FIPP/Unoeste (2026)**. A organização serve de contexto para os projetos acadêmicos desenvolvidos pelo grupo ao longo do semestre.
 
 > 🔗 Organização no GitHub: [github.com/gp7-neosys](https://github.com/gp7-neosys)
 
 ---
 
-## 👥 Equipe — Grupo 7
+## 👥 Equipe — Grupo 2
 
-Projeto desenvolvido pelos integrantes do **Grupo 7 — Turma A** do curso de **ADS/FIPP/Unoeste 2026**, sob o guarda-chuva da organização **NeoSys Consultoria de TI**.
+Projeto desenvolvido pelos integrantes do **Grupo 2 — Turma A** do curso de **ADS/FIPP/Unoeste 2026**, sob o guarda-chuva da organização **NeoSys Consultoria de TI**.
 
 > Os perfis individuais dos membros podem ser consultados na aba [Contributors](https://github.com/gp7-neosys/hitboxe-site/graphs/contributors) do repositório.
 
@@ -149,5 +149,5 @@ Copyright (c) 2026 NeoSys Consultoria de TI
 ---
 
 <div align="center">
-  <sub>Feito com 🥊 pelo Grupo 7 · NeoSys Consultoria de TI · ADS FIPP/Unoeste 2026</sub>
+  <sub>Feito com 🥊 pelo Grupo 2 · NeoSys Consultoria de TI · ADS FIPP/Unoeste 2026</sub>
 </div>
